@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Buddy - Your Athletic Companion</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Authentication Modal -->
+    <div class="auth-overlay" id="authOverlay">
+        <div class="auth-modal">
+            <div class="auth-header">
+                <div class="auth-logo">
+                    <i class="fas fa-running"></i>
+                    <h2>Sports Buddy</h2>
+                </div>
+                <button class="auth-close" id="authClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- Login Form -->
+            <div class="auth-form" id="loginForm">
+                <h3>Welcome Back!</h3>
+                <p>Sign in to continue your fitness journey</p>
+                
+                <form id="loginFormElement">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                            <button type="button" class="password-toggle" id="loginPasswordToggle">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="rememberMe">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    
+                    <button type="submit" class="auth-btn primary">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Sign In
+                    </button>
+                </form>
+                
+                <div class="auth-divider">
+                    <span>or continue with</span>
+                </div>
+                
+                <div class="social-auth">
+                    <button class="social-btn google">
+                        <i class="fab fa-google"></i>
+                        Google
+                    </button>
+                    <button class="social-btn facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        Facebook
+                    </button>
+                </div>
+                
+                <p class="auth-switch">
+                    Don't have an account? 
+                    <a href="#" id="showSignup">Sign up here</a>
+                </p>
+            </div>
+            
+            <!-- Signup Form -->
+            <div class="auth-form hidden" id="signupForm">
+                <h3>Join Sports Buddy</h3>
+                <p>Create your account and start connecting</p>
+                
+                <form id="signupFormElement">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="firstName" placeholder="First name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="lastName" placeholder="Last name" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signupEmail">Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="signupPassword" placeholder="Create password" required>
+                            <button type="button" class="password-toggle" id="signupPasswordToggle">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength" id="passwordStrength">
+                            <div class="strength-bar">
+                                <div class="strength-fill"></div>
+                            </div>
+                            <span class="strength-text">Password strength</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agreeTerms" required>
+                            <span class="checkmark"></span>
+                            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="auth-btn primary">
+                        <i class="fas fa-user-plus"></i>
+                        Create Account
+                    </button>
+                </form>
+                
+                <div class="auth-divider">
+                    <span>or continue with</span>
+                </div>
+                
+                <div class="social-auth">
+                    <button class="social-btn google">
+                        <i class="fab fa-google"></i>
+                        Google
+                    </button>
+                    <button class="social-btn facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        Facebook
+                    </button>
+                </div>
+                
+                <p class="auth-switch">
+                    Already have an account? 
+                    <a href="#" id="showLogin">Sign in here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="fas fa-running"></i>
+            </div>
+            <div class="loading-text">Sports Buddy</div>
+            <div class="loading-spinner">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-running"></i>
+                <h2>Sports Buddy</h2>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+                <li><a href="#find-buddies" class="nav-link" data-section="find-buddies">Find Buddies</a></li>
+                <li><a href="#events" class="nav-link" data-section="events">Events</a></li>
+                <li><a href="#community" class="nav-link" data-section="community">Community</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="notification-btn" id="notificationBtn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <button class="chat-trigger-btn" id="chatTriggerBtn">
+                    <i class="fas fa-comments"></i>
+                    <span class="chat-badge">2</span>
+                </button>
+                <div class="user-avatar" id="userAvatar">
+                    <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop" alt="User">
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-particles"></div>
+            <div class="hero-gradient"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="title-line">Find Your Perfect</span>
+                    <span class="title-line highlight">Sports Partner</span>
+                </h1>
+                <p class="hero-description">Connect with fellow athletes, join sports events, and elevate your fitness journey with Sports Buddy</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary btn-large pulse-animation" id="getStartedBtn">
+                        <i class="fas fa-rocket"></i>
+                        Get Started
+                    </button>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-number" data-count="10000">0</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-count="500">0</div>
+                    <div class="stat-label">Events Monthly</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-count="50">0</div>
+                    <div class="stat-label">Sports Categories</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-cards">
+                <div class="floating-card card-1">
+                    <i class="fas fa-trophy"></i>
+                    <h4>Track Progress</h4>
+                    <p>Monitor your fitness goals</p>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-users"></i>
+                    <h4>Find Partners</h4>
+                    <p>Connect with athletes</p>
+                </div>
+                <div class="floating-card card-3">
+                    <i class="fas fa-calendar"></i>
+                    <h4>Join Events</h4>
+                    <p>Participate in activities</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Find Buddies Section -->
+    <section id="find-buddies" class="find-buddies">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Find Your Sports Buddy</h2>
+                <p class="section-subtitle">Connect with athletes who share your passion and skill level</p>
+            </div>
+            
+            <div class="search-container">
+                <div class="search-filters">
+                    <div class="filter-group">
+                        <label for="sport-select">Sport</label>
+                        <div class="select-wrapper">
+                            <select id="sport-select">
+                                <option value="">All Sports</option>
+                            </select>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="location-input">Location</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="location-input" placeholder="Enter your city" list="location-suggestions">
+                            <datalist id="location-suggestions"></datalist>
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="skill-level">Skill Level</label>
+                        <div class="select-wrapper">
+                            <select id="skill-level">
+                                <option value="">Any Level</option>
+                                <option value="beginner">Beginner</option>
+                                <option value="intermediate">Intermediate</option>
+                                <option value="advanced">Advanced</option>
+                                <option value="professional">Professional</option>
+                            </select>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary search-btn" id="searchBuddiesBtn">
+                        <i class="fas fa-search"></i>
+                        Search
+                    </button>
+                </div>
+            </div>
+
+            <div class="buddies-grid" id="buddies-grid">
+                <!-- Buddy cards will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="events">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Upcoming Sports Events</h2>
+                <p class="section-subtitle">Join exciting sports events in your area</p>
+            </div>
+            
+            <div class="events-filter">
+                <button class="filter-btn active" data-filter="all">All Events</button>
+                <button class="filter-btn" data-filter="today">Today</button>
+                <button class="filter-btn" data-filter="week">This Week</button>
+                <button class="filter-btn" data-filter="weekend">Weekend</button>
+                <button class="filter-btn" data-filter="month">This Month</button>
+            </div>
+
+            <div class="events-grid" id="events-grid">
+                <!-- Event cards will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="community">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Sports Community</h2>
+                <p class="section-subtitle">Share experiences, tips, and connect with fellow athletes</p>
+            </div>
+            
+            <div class="community-content">
+                <div class="posts-section">
+                    <div class="create-post">
+                        <div class="post-input">
+                            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=50&h=50&fit=crop" alt="Your Avatar" class="post-avatar">
+                            <input type="text" placeholder="Share your sports experience..." id="post-input">
+                            <button class="btn btn-primary post-btn" id="createPostBtn">
+                                <i class="fas fa-paper-plane"></i>
+                                Post
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="posts-feed" id="posts-feed">
+                        <!-- Posts will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="community-sidebar">
+                    <div class="trending-topics">
+                        <h3>Trending Sports</h3>
+                        <div class="topic-tags">
+                            <span class="tag">#Marathon2024</span>
+                            <span class="tag">#TennisTraining</span>
+                            <span class="tag">#CyclingLife</span>
+                            <span class="tag">#FitnessGoals</span>
+                            <span class="tag">#TeamSports</span>
+                            <span class="tag">#YogaLife</span>
+                            <span class="tag">#SwimmingTips</span>
+                            <span class="tag">#BasketballSkills</span>
+                        </div>
+                    </div>
+                    
+                    <div class="leaderboard">
+                        <h3>Top Athletes This Month</h3>
+                        <div class="leaderboard-list">
+                            <div class="leader-item">
+                                <span class="rank">1</span>
+                                <img src="https://images.pexels.com/photos/1680172/pexels-photo-1680172.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop" alt="Top Athlete">
+                                <span class="name">Alex Runner</span>
+                                <span class="score">2,450 pts</span>
+                            </div>
+                            <div class="leader-item">
+                                <span class="rank">2</span>
+                                <img src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop" alt="Second Place">
+                                <span class="name">Sarah Cyclist</span>
+                                <span class="score">2,340 pts</span>
+                            </div>
+                            <div class="leader-item">
+                                <span class="rank">3</span>
+                                <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop" alt="Third Place">
+                                <span class="name">Mike Swimmer</span>
+                                <span class="score">2,180 pts</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Settings Sidebar -->
+    <div class="profile-sidebar" id="profileSidebar">
+        <div class="profile-sidebar-header">
+            <h3>Profile Settings</h3>
+            <button class="close-btn" id="closeProfileSidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="profile-sidebar-content">
+            <div class="profile-tabs">
+                <button class="profile-tab active" data-tab="profile">
+                    <i class="fas fa-user"></i>
+                    Profile
+                </button>
+                <button class="profile-tab" data-tab="preferences">
+                    <i class="fas fa-cog"></i>
+                    Preferences
+                </button>
+                <button class="profile-tab" data-tab="privacy">
+                    <i class="fas fa-shield-alt"></i>
+                    Privacy
+                </button>
+                <button class="profile-tab" data-tab="notifications">
+                    <i class="fas fa-bell"></i>
+                    Notifications
+                </button>
+            </div>
+            
+            <div class="profile-tab-content">
+                <!-- Profile Tab -->
+                <div class="tab-panel active" id="profile-tab">
+                    <div class="profile-section">
+                        <div class="profile-avatar-section">
+                            <div class="profile-avatar-large">
+                                <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=120&h=120&fit=crop" alt="Profile" id="profileImage">
+                                <button class="change-avatar-btn" id="changeAvatarBtn">
+                                    <i class="fas fa-camera"></i>
+                                </button>
+                            </div>
+                            <h4>John Athlete</h4>
+                            <p>Member since January 2024</p>
+                        </div>
+                        
+                        <form class="profile-form" id="profileForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="profileFirstName">First Name</label>
+                                    <input type="text" id="profileFirstName" value="John">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileLastName">Last Name</label>
+                                    <input type="text" id="profileLastName" value="Athlete">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="profileEmail">Email</label>
+                                <input type="email" id="profileEmail" value="john@example.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="profilePhone">Phone</label>
+                                <input type="tel" id="profilePhone" value="+1 234 567 8900">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="profileBio">Bio</label>
+                                <textarea id="profileBio" rows="3">Passionate runner and tennis player. Always looking for new challenges!</textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="profileLocation">Location</label>
+                                <input type="text" id="profileLocation" value="New York, NY">
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i>
+                                Save Changes
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Preferences Tab -->
+                <div class="tab-panel" id="preferences-tab">
+                    <div class="preferences-section">
+                        <h4>Sports Preferences</h4>
+                        <div class="sports-grid">
+                            <label class="sport-checkbox">
+                                <input type="checkbox" checked>
+                                <span class="sport-icon"><i class="fas fa-running"></i></span>
+                                <span>Running</span>
+                            </label>
+                            <label class="sport-checkbox">
+                                <input type="checkbox" checked>
+                                <span class="sport-icon"><i class="fas fa-table-tennis"></i></span>
+                                <span>Tennis</span>
+                            </label>
+                            <label class="sport-checkbox">
+                                <input type="checkbox">
+                                <span class="sport-icon"><i class="fas fa-basketball-ball"></i></span>
+                                <span>Basketball</span>
+                            </label>
+                            <label class="sport-checkbox">
+                                <input type="checkbox">
+                                <span class="sport-icon"><i class="fas fa-bicycle"></i></span>
+                                <span>Cycling</span>
+                            </label>
+                        </div>
+                        
+                        <h4>Activity Level</h4>
+                        <div class="activity-level">
+                            <label class="radio-label">
+                                <input type="radio" name="activity" value="casual">
+                                <span>Casual (1-2 times/week)</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="activity" value="regular" checked>
+                                <span>Regular (3-4 times/week)</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="activity" value="intense">
+                                <span>Intense (5+ times/week)</span>
+                            </label>
+                        </div>
+                        
+                        <button class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Save Preferences
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Privacy Tab -->
+                <div class="tab-panel" id="privacy-tab">
+                    <div class="privacy-section">
+                        <h4>Privacy Settings</h4>
+                        
+                        <div class="privacy-option">
+                            <div class="privacy-info">
+                                <h5>Profile Visibility</h5>
+                                <p>Who can see your profile information</p>
+                            </div>
+                            <select class="privacy-select">
+                                <option value="public">Everyone</option>
+                                <option value="friends" selected>Friends Only</option>
+                                <option value="private">Private</option>
+                            </select>
+                        </div>
+                        
+                        <div class="privacy-option">
+                            <div class="privacy-info">
+                                <h5>Activity Status</h5>
+                                <p>Show when you're online</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="privacy-option">
+                            <div class="privacy-info">
+                                <h5>Location Sharing</h5>
+                                <p>Share your location with buddies</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        
+                        <button class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Save Privacy Settings
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Notifications Tab -->
+                <div class="tab-panel" id="notifications-tab">
+                    <div class="notifications-section">
+                        <h4>Notification Preferences</h4>
+                        
+                        <div class="notification-group">
+                            <h5>Email Notifications</h5>
+                            <div class="notification-option">
+                                <span>New buddy requests</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="notification-option">
+                                <span>Event invitations</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="notification-option">
+                                <span>Weekly activity summary</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="notification-group">
+                            <h5>Push Notifications</h5>
+                            <div class="notification-option">
+                                <span>New messages</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="notification-option">
+                                <span>Event reminders</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Save Notification Settings
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-sidebar-footer">
+                <button class="btn btn-secondary" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Sidebar -->
+    <div class="chat-sidebar" id="chatSidebar">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="chat-avatar">
+                    <img src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&fit=crop" alt="Support">
+                    <div class="online-indicator"></div>
+                </div>
+                <div class="chat-details">
+                    <h4>Sports Assistant</h4>
+                    <span class="status">Online</span>
+                </div>
+            </div>
+            <button class="chat-close-btn" id="closeChatBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="chat-body" id="chatBody">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message-date">Today</div>
+                <div class="chat-message received">
+                    <div class="message-avatar">
+                        <img src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=30&h=30&fit=crop" alt="Assistant">
+                    </div>
+                    <div class="message-content">
+                        <div class="message-bubble">
+                            Welcome to Sports Buddy! 👋 I'm here to help you find the perfect sports partner and answer any questions you might have.
+                        </div>
+                        <div class="message-time">2:30 PM</div>
+                    </div>
+                </div>
+                
+                <div class="chat-message received">
+                    <div class="message-avatar">
+                        <img src="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=30&h=30&fit=crop" alt="Assistant">
+                    </div>
+                    <div class="message-content">
+                        <div class="message-bubble">
+                            What sport are you interested in? I can help you find local buddies and upcoming events! 🏃‍♂️⚽🎾
+                        </div>
+                        <div class="message-time">2:31 PM</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <span class="typing-text">Assistant is typing...</span>
+            </div>
+            
+            <div class="chat-input-container">
+                <div class="chat-input">
+                    <button class="attachment-btn" id="attachmentBtn">
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                    <input type="text" placeholder="Type your message..." id="chatInput">
+                    <button class="emoji-btn" id="emojiBtn">
+                        <i class="fas fa-smile"></i>
+                    </button>
+                    <button class="send-btn" id="sendChatBtn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Floating Button -->
+    <div class="chat-floating-btn" id="chatFloatingBtn">
+        <i class="fas fa-comments"></i>
+        <span class="chat-notification-dot"></span>
+    </div>
+
+    <!-- Event Details Modal -->
+    <div class="modal-overlay" id="eventModalOverlay">
+        <div class="event-modal" id="eventModal">
+            <div class="modal-header">
+                <h2 id="eventModalTitle">Event Details</h2>
+                <button class="modal-close-btn" id="closeEventModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="event-details-form">
+                    <div class="event-info-section">
+                        <img id="eventModalImage" src="" alt="Event" class="event-modal-image">
+                        <div class="event-basic-info">
+                            <h3 id="eventModalName"></h3>
+                            <p id="eventModalDescription"></p>
+                            <div class="event-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span id="eventModalDate"></span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span id="eventModalTime"></span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span id="eventModalLocation"></span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-users"></i>
+                                    <span id="eventModalParticipants"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form id="eventJoinForm" class="join-form">
+                        <h4>Join Event</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="participantName">Full Name</label>
+                                <input type="text" id="participantName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="participantEmail">Email</label>
+                                <input type="email" id="participantEmail" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="participantPhone">Phone Number</label>
+                                <input type="tel" id="participantPhone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="participantAge">Age</label>
+                                <input type="number" id="participantAge" min="16" max="80" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="participantExperience">Experience Level</label>
+                            <select id="participantExperience" required>
+                                <option value="">Select your level</option>
+                                <option value="beginner">Beginner</option>
+                                <option value="intermediate">Intermediate</option>
+                                <option value="advanced">Advanced</option>
+                                <option value="professional">Professional</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="participantNotes">Additional Notes (Optional)</label>
+                            <textarea id="participantNotes" rows="3" placeholder="Any special requirements or notes..."></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="cancelJoinEvent">Cancel</button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-check"></i>
+                                Join Event
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Notification Panel -->
+    <div class="notification-panel" id="notificationPanel">
+        <div class="notification-header">
+            <h3>Notifications</h3>
+            <div class="notification-actions">
+                <button class="mark-all-read" id="markAllReadBtn">
+                    <i class="fas fa-check-double"></i>
+                    Mark all as read
+                </button>
+                <button class="clear-all" id="clearAllBtn">
+                    <i class="fas fa-trash"></i>
+                    Clear all
+                </button>
+            </div>
+        </div>
+        <div class="notification-list" id="notificationList">
+            <div class="notification-item unread" data-id="1">
+                <div class="notification-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <div class="notification-content">
+                    <p><strong>Sarah Johnson</strong> wants to be your sports buddy</p>
+                    <span class="notification-time">2 minutes ago</span>
+                </div>
+                <div class="notification-actions-item">
+                    <button class="mark-read-btn" title="Mark as read">
+                        <i class="fas fa-check"></i>
+                    </button>
+                    <button class="delete-notification-btn" title="Delete">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="notification-item unread" data-id="2">
+                <div class="notification-icon">
+                    <i class="fas fa-calendar"></i>
+                </div>
+                <div class="notification-content">
+                    <p>New <strong>Tennis Tournament</strong> event near you</p>
+                    <span class="notification-time">1 hour ago</span>
+                </div>
+                <div class="notification-actions-item">
+                    <button class="mark-read-btn" title="Mark as read">
+                        <i class="fas fa-check"></i>
+                    </button>
+                    <button class="delete-notification-btn" title="Delete">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="notification-item" data-id="3">
+                <div class="notification-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="notification-content">
+                    <p>You earned the <strong>"Marathon Runner"</strong> achievement!</p>
+                    <span class="notification-time">3 hours ago</span>
+                </div>
+                <div class="notification-actions-item">
+                    <button class="delete-notification-btn" title="Delete">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="notification-empty" id="notificationEmpty" style="display: none;">
+            <i class="fas fa-bell-slash"></i>
+            <p>No notifications</p>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-running"></i>
+                        <h3>Sports Buddy</h3>
+                    </div>
+                    <p>Your ultimate companion for sports and fitness activities. Connect, compete, and achieve your goals together.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#find-buddies">Find Buddies</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#community">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Download App</h4>
+                    <div class="app-downloads">
+                        <a href="#" class="app-link">
+                            <i class="fab fa-apple"></i>
+                            <span>App Store</span>
+                        </a>
+                        <a href="#" class="app-link">
+                            <i class="fab fa-google-play"></i>
+                            <span>Google Play</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Sports Buddy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
